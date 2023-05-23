@@ -1,0 +1,32 @@
+<div class="sidebar">
+  <div class="logo-title">
+    <img src="./assets/images/logo.png" alt="Logo" width="45" height="45">
+    <h1 class="title">Satoripop project</h1>
+  </div>
+  <ul class="links">
+    <li [ngClass]="{ 'active': activeLink === 'Dashboard' }">
+      <a [routerLink]="'/dashboard'" [class.active]="activeLink === 'Dashboard'" (click)="setActiveLink('Dashboard'); $event.stopPropagation()" class="link">
+        <img src="./assets/images/home-logo.png" alt="Home Logo" width="24" height="24">
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li [ngClass]="{ 'active': activeLink === 'Schedule' }">
+      <a [routerLink]="'/schedule'" [class.active]="activeLink === 'Schedule'" (click)="setActiveLink('Schedule');$event.stopPropagation()" class="link">
+        <img src="./assets/images/folder.png" alt="File Logo" width="24" height="24">
+        <span>Schedule</span>
+      </a>
+    </li>
+    <li [ngClass]="{ 'active': activeLink === 'Resources' }">
+      <a [routerLink]="'/ressources'" [class.active]="activeLink === 'Resources'" (click)="setActiveLink('Resources');$event.stopPropagation()" class="link">
+        <img src="./assets/images/user.png" alt="File Logo" width="24" height="24">
+        <span>Resources</span>
+      </a>
+    </li>
+    <li [ngClass]="{ 'active': activeLink === 'Changelog' }">
+      <a [routerLink]="'/changelog'" [class.active]="activeLink === 'Changelog'" (click)="setActiveLink('Changelog');$event.stopPropagation()" class="link">
+        <img src="./assets/images/log.png" alt="File Logo" width="24" height="24">
+        <span>ChangeLog</span>
+      </a>
+    </li>
+  </ul>
+</div>

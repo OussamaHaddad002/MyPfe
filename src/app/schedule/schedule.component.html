@@ -1,0 +1,134 @@
+
+<div class="schedule-page">
+<div class="container">
+  <div class="schedule-container">
+    <div class="box">
+      <div class="number-container">
+        <div class="number">{{total}}</div>
+        <div class="title">Total Actions</div>
+      </div>
+      <div class="sub-container">
+        <div class="sub-title">Planned Actions</div>
+        <div class="value">{{planned}}</div>
+      </div>
+      <div class="sub-container">
+        <div class="sub-title">In_Progress Actions</div>
+        <div class="value">{{inprogress}}</div>
+      </div>
+      <div class="sub-container">
+        <div class="sub-title">Delivered Actions</div>
+        <div class="value">{{delivered}}</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="title1">Action Progress</div>
+      <div class="chart-container">
+        <img src="../../assets/images/Chart.png" alt="Chart Image" class="chart-image">
+        <div class="color-description-container">
+          <div class="color-container">
+            <div class="color-rectangle" style="background-color: #FFD800;"></div>
+            <div class="color-description">Planned</div>
+            <div class="color-percentage">50%</div>
+          </div>
+          <div class="color-container">
+            <div class="color-rectangle" style="background-color: #00ff00;"></div>
+            <div class="color-description">In_Progress</div>
+            <div class="color-percentage">30%</div>
+          </div>
+          <div class="color-container">
+            <div class="color-rectangle" style="background-color: #0000ff;"></div>
+            <div class="color-description">Delivered</div>
+            <div class="color-percentage">20%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="title1">Progress Rate</div>
+      <img src="./assets/images/shart.png" alt="shart Image" class="shart-image">
+      <div class="prog">
+        <div class="Progress-rate">7895</div>
+      <div class="Progress">Progress Rate</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="add-epic-button" (click)="addEpic()">Add Epic</button>
+      <button class="add-task-button" (click)="addTask()">Add Task</button>
+    </div>
+
+    <ng-template #addTaskDialog>
+      <div class="popup-form">
+
+      <h2>Add Task</h2>
+      <form (submit)="registerTask()">
+        <div>
+          <label for="action">Action:</label>
+          <input type="text" id="action" name="action" [(ngModel)]="task.action">
+        </div>
+        <div>
+          <label for="date">Date:</label>
+          <input type="text" id="date" name="date" [(ngModel)]="task.date" required>
+        </div>
+        <div>
+          <label for="effort">Effort:</label>
+          <input type="text" id="effort" name="effort" [(ngModel)]="task.effort" required>
+        </div>
+        <div>
+          <label for="status">Status:</label>
+          <select id="status" [(ngModel)]="task.status" class="input-field" name="status" required>
+            <option value="In_Progress">In Progress</option>
+            <option value="Pending">Pending</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="epic">Epic:</label>
+          <select id="epic" name="epic" [(ngModel)]="task.epic">
+            <option *ngFor="let table of tables" [value]="table.id" required>Epic {{ table.id }}</option>
+          </select>
+        </div>
+        <div class="button-container">
+        <button type="submit">Register</button>
+        <button type="button" (click)="closeAddTaskModal()">Cancel</button>
+        </div>
+      </form>
+      </div>
+    </ng-template>
+
+
+    <div class="table-container" *ngFor="let table of tables">
+  <div class="Epic">Epic {{ table.id }}</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 500px;">Action</th>
+        <th style="width: 180px;">Date</th>
+        <th style="width: 120px;">Effort</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of table.data">
+        <td>{{ row.action }}</td>
+        <td><img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">{{ row.date }}</td>
+        <td>{{ row.effort }}</td>
+        <td>
+          <span [ngClass]="getStatusColorClass(row.status)"></span>
+          {{ row.status }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+
+
+
+  </div>
+</div>
+</div>

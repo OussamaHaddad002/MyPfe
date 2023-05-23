@@ -1,0 +1,10 @@
+<div class="container">
+  <img src="../../assets/images/logo.png" alt="Logo">
+  <h2>Welcome to the Authentication Page</h2>
+  <form>
+    <input type="text" placeholder="Username" class="input-field" [ngClass]="{ 'empty': isFieldEmpty('username') }" [(ngModel)]="username">
+    <input type="password" placeholder="Password" class="input-field" [ngClass]="{ 'empty': isFieldEmpty('password') }" [(ngModel)]="password">
+    <button type="submit" class="btn">Login</button>
+  </form>
+  <button class="register-btn" routerLink="/registration">Register</button>
+</div>

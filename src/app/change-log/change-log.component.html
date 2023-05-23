@@ -1,0 +1,120 @@
+<div class="change-page">
+  <div class="container">
+    <div class="change-container">
+      <div class="box">
+        <div class="number-container">
+          <div class="number">{{total}}</div>
+          <div class="title">Total Cost (effort)</div>
+        </div>
+        <div class="sub-container">
+          <div class="sub-title">Scope</div>
+          <div class="value">{{scope}}</div>
+        </div>
+        <div class="sub-container">
+          <div class="sub-title">Resourcing</div>
+          <div class="value">{{resourcing}}</div>
+        </div>
+        <div class="sub-container">
+          <div class="sub-title">Timeline</div>
+          <div class="value">{{timeline}}</div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="title1">Changes cost</div>
+        <div class="chart-container">
+          <img src="../../assets/images/Chart.png" alt="Chart Image" class="chart-image">
+          <div class="color-description-container">
+            <div class="color-container">
+              <div class="color-rectangle" style="background-color: #FFD800;"></div>
+              <div class="color-description">Planned</div>
+              <div class="color-percentage">50%</div>
+            </div>
+            <div class="color-container">
+              <div class="color-rectangle" style="background-color: #00ff00;"></div>
+              <div class="color-description">In_Progress</div>
+              <div class="color-percentage">30%</div>
+            </div>
+            <div class="color-container">
+              <div class="color-rectangle" style="background-color: #0000ff;"></div>
+              <div class="color-description">Delivered</div>
+              <div class="color-percentage">20%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="title1">Cost (effort)</div>
+        <img src="./assets/images/shart.png" alt="shart Image" class="shart-image">
+        <div class="prog">
+          <div class="Progress-rate">7,895</div>
+        <div class="Progress">Progress Rate</div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="add-button" (click)="addNew()">Add new</button>
+      </div>
+      <div class="table-container" *ngFor="let table of tables">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Typer</th>
+              <th>Initiator</th>
+              <th>Date</th>
+              <th class="description-column">Description</th>
+              <th>Impact</th>
+              <th>Cost</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let row of table.data; let i = index">
+              <td>{{ row.Type }}</td>
+              <td>{{ row.Initiator }}</td>
+              <td><div class="date-cell">
+                <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+                {{ row.Date }}
+              </div></td>
+              <td>{{ row.Description }}</td>
+              <td>{{ row.Impact }}</td>
+              <td>{{ row.Cost}}</td>
+              <td>
+                {{ row.status }}
+              </td>
+            </tr>
+            <!-- Sample Rows (Replace with your actual data) -->
+
+            <tr *ngIf="table.isAddingNew">
+              <td>
+                <input type="text" [(ngModel)]="newRow.Type" class="input-field" >
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.Initiator" class="input-field">
+              </td>
+              <td>
+                <div class="date-cell">
+                  <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+                  <input type="text" [(ngModel)]="newRow.Date" class="input-field">
+                </div>
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.Description" class="input-field">
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.Impact" class="input-field">
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.Cost" class="input-field">
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.status" class="input-field" (keydown.enter)="saveNewRow(table)">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

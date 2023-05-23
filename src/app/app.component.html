@@ -1,0 +1,6 @@
+<router-outlet>
+  <div class="container" *ngIf="showSideNavAndSearchBar">
+    <app-side-nav (activeLinkChange)="activeLink = $event" ></app-side-nav>
+    <app-search-bar [activeLink]="activeLink" style="background-color:#F9F9F9; "></app-search-bar>
+  </div>
+</router-outlet>

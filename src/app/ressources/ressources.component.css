@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.schedule-page {
+  background-color: #F9F9F9;
+
+}
+
+
+.resource-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 22px;
+  position: absolute;
+  left: 400px;
+  top: 133px;
+  background-color: #F9F9F9;
+  padding: 10px;
+
+}
+
+.box {
+  width: 335px;
+  height: 211px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(76, 87, 125, 0.02);
+  border-radius: 12px;
+}
+
+
+.number-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.number {
+  font-size: 28px;
+  color: #FFD800;
+  width: 56px;
+  height: 38px;
+  padding-left: 30px;
+}
+
+.title {
+  margin-left: 23px;
+  font-weight: 500 ;
+  font-size: 20px;
+  font-family: 'ROBOTO';
+  color: #1C264A;
+
+}
+
+.sub-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.sub-title {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #E4E6EF;
+  padding-left: 30px;
+}
+
+.value {
+  font-weight: bold;
+  color: #181C33;
+  padding-right: 31px;
+  size: 14px;
+}
+
+.chart-container{
+  display: flex;
+}
+
+.color-description-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chart-image{
+  width: 100px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.color-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-rectangle {
+  width: 8px;
+  height: 3px;
+  margin-right: 5px;
+}
+
+.color-description {
+  flex-grow: 1;
+  color: #B5B5C3;
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+
+}
+
+.color-percentage {
+  font-weight: bold;
+  margin-left: 42px;
+  color: #5E6278;
+}
+
+.title1{
+  margin-left: 23px;
+  font-weight: 500 ;
+  font-size: 20px;
+  font-family: 'ROBOTO';
+  color: #1C264A;
+  padding: 21px;
+}
+
+.shart-image{
+  width: 203px;
+  margin-left: 63px;
+}
+.prog {
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 22px;
+  color: #1C264A;
+  text-align: center;
+  position: relative;
+  top: -100px;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; /* Adjust the margin as needed */
+  margin-left: 937px;
+}
+
+.add-epic-button{
+  width: 88px;
+  background-color: #1C264A;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.add-epic-button:hover{
+  opacity: 0.8;
+}
+
+.table-container{
+  width: 1048px;
+  background-color: #fff;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px;
+  border-bottom: 0px solid #ccc;
+  text-align: left;
+
+}
+
+.data-table th {
+
+  font-weight: bold;
+  color: #BDBDBD;
+}
+
+.data-table .date-cell {
+  display: flex;
+  align-items: center;
+}
+
+.data-table .calendar {
+  margin-right: 5px;
+}
+
+.data-table .input-field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.data-table .date-cell {
+  display: flex;
+  align-items: center;
+}
+
+.data-table .date-cell .calendar {
+  margin-right: 5px;
+}
+
+
+

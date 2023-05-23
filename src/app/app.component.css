@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.container {
+  display: flex;
+}
+
+.app-side-nav {
+  flex: 0 0 330px; /* Set width for the side nav */
+}
+
+.app-search-bar {
+  flex: 1; /* Let it take the remaining space */
+}
