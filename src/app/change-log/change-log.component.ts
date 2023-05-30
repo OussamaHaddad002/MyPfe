@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-change-log',
@@ -10,7 +12,8 @@ export class ChangeLogComponent {
   public scope = 3;
   public resourcing = 2;
   public timeline = 1;
-  tables: any[] = []; // Initialize tables as an empty array
+  tables: any[] = [];
+  public changeForm!: FormGroup;
 
   newRow: any = {
     Type: '',
@@ -22,11 +25,11 @@ export class ChangeLogComponent {
     Status: ''
   };
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.tables = [
       {
         id: 1,
-        data: []
+        data: [],
       }
     ];
   }
@@ -46,21 +49,21 @@ export class ChangeLogComponent {
     this.tables[0].data.push(newRow);
   }
 
-
-
-  addNew(){
+  addNew() {
     const table = this.tables[0]; // Assuming there is only one table
-  table.isAddingNew = true;
-  this.newRow = {
-    Type: '',
-    Initiator: '',
-    Date: '',
-    Description: '',
-    Impact: '',
-    Cost: '',
-    status: ''
-  };
+    table.isAddingNew = true;
+    this.newRow = {
+      Type: '',
+      Initiator: '',
+      Date: '',
+      Description: '',
+      Impact: '',
+      Cost: '',
+      status: ''
+    };
   }
+
+
 
   saveNewRow(table: any) {
     // Add validation checks if required
@@ -76,5 +79,6 @@ export class ChangeLogComponent {
       status: ''
     };
   }
+
 
 }

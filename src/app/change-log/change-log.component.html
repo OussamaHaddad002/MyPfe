@@ -56,65 +56,82 @@
       <div class="buttons">
         <button class="add-button" (click)="addNew()">Add new</button>
       </div>
+      <!-- change-log.component.html -->
+
+      <!-- ... Existing code ... -->
+
       <div class="table-container" *ngFor="let table of tables">
         <table class="data-table">
           <thead>
-            <tr>
-              <th>Typer</th>
-              <th>Initiator</th>
-              <th>Date</th>
-              <th class="description-column">Description</th>
-              <th>Impact</th>
-              <th>Cost</th>
-              <th>Status</th>
-            </tr>
+          <tr>
+            <th>Typer</th>
+            <th>Initiator</th>
+            <th>Date</th>
+            <th class="description-column">Description</th>
+            <th>Impact</th>
+            <th>Cost</th>
+            <th>Status</th>
+          </tr>
           </thead>
           <tbody>
-            <tr  *ngFor="let row of table.data; let i = index">
-              <td>{{ row.Type }}</td>
-              <td>{{ row.Initiator }}</td>
-              <td><div class="date-cell">
+          <tr *ngFor="let row of table.data; let i = index">
+            <td>{{ row.Type }}</td>
+            <td>{{ row.Initiator }}</td>
+            <td>
+              <div class="date-cell">
                 <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
                 {{ row.Date }}
-              </div></td>
-              <td>{{ row.Description }}</td>
-              <td>{{ row.Impact }}</td>
-              <td>{{ row.Cost}}</td>
-              <td>
-                {{ row.status }}
-              </td>
-            </tr>
-            <!-- Sample Rows (Replace with your actual data) -->
+              </div>
+            </td>
+            <td>{{ row.Description }}</td>
+            <td>{{ row.Impact }}</td>
+            <td>{{ row.Cost }}</td>
+            <td>
+              {{ row.Status }}
+            </td>
+          </tr>
+          <!-- Sample Rows (Replace with your actual data) -->
 
-            <tr *ngIf="table.isAddingNew">
-              <td>
-                <input type="text" [(ngModel)]="newRow.Type" class="input-field" >
-              </td>
-              <td>
-                <input type="text" [(ngModel)]="newRow.Initiator" class="input-field">
-              </td>
-              <td>
-                <div class="date-cell">
-                  <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
-                  <input type="text" [(ngModel)]="newRow.Date" class="input-field">
-                </div>
-              </td>
-              <td>
-                <input type="text" [(ngModel)]="newRow.Description" class="input-field">
-              </td>
-              <td>
-                <input type="text" [(ngModel)]="newRow.Impact" class="input-field">
-              </td>
-              <td>
-                <input type="text" [(ngModel)]="newRow.Cost" class="input-field">
-              </td>
-              <td>
-                <input type="text" [(ngModel)]="newRow.status" class="input-field" (keydown.enter)="saveNewRow(table)">
-              </td>
-            </tr>
+          <tr *ngIf="table.isAddingNew">
+            <td>
+              <select [(ngModel)]="newRow.Type" class="input-field">
+                <option value="Major">Major</option>
+                <option value="Standard">Standard</option>
+                <option value="Minor">Minor</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="newRow.Initiator" class="input-field">
+            </td>
+            <td>
+              <div class="date-cell">
+                <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+                <input type="text" [(ngModel)]="newRow.Date" class="input-field">
+              </div>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="newRow.Description" class="input-field">
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="newRow.Impact" class="input-field">
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="newRow.Cost" class="input-field" (keydown.enter)="saveNewRow(table)">
+            </td>
+            <td>
+              <select [(ngModel)]="newRow.Status" class="input-field">
+                <option value="Pending">Pending</option>
+                <option value="In_Progress">In_Progress</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
+
+      <!-- ... Remaining code ... -->
+
     </div>
   </div>
 </div>

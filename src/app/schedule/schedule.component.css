@@ -328,3 +328,11 @@ line-height: 14px;
   margin-right: 8px;
   }
 
+  .epic-title{
+    display: flex;
+  }
+
+  .error-message{
+    color: red;
+  }
+
