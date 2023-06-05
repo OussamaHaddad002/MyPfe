@@ -8,4 +8,14 @@ import { Component, Input } from '@angular/core';
 export class SearchBarComponent {
   @Input() activeLink: string = "";
   @Input() userName: string = "Agent Name";
+
+  dropdownVisible: boolean = false;
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  logout() {
+    window.location.href = '/logout';
+  }
 }

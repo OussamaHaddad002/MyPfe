@@ -28,17 +28,17 @@
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #FFD800;"></div>
               <div class="color-description">Planned</div>
-              <div class="color-percentage">{{planned/total * 100 | number:'1.2-2'}}%</div>
+              <div class="color-percentage">{{ planned / total * 100 | number:'1.2-2' }}%</div>
             </div>
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #00ff00;"></div>
               <div class="color-description">In_Progress</div>
-              <div class="color-percentage">{{inprogress/total * 100 | number:'1.2-2'}}%</div>
+              <div class="color-percentage">{{ inprogress / total * 100 | number:'1.2-2' }}%</div>
             </div>
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #0000ff;"></div>
               <div class="color-description">Delivered</div>
-              <div class="color-percentage">{{delivered/total*100 | number:'1.2-2'}}%</div>
+              <div class="color-percentage">{{ delivered / total * 100 | number:'1.2-2' }}%</div>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="title1">Progress Rate</div>
         <img src="./assets/images/shart.png" alt="shart Image" class="shart-image">
         <div class="prog">
-          <div class="Progress-rate">{{delivered/total*100 | number:'1.2-2'}}%</div>
+          <div class="Progress-rate">{{ delivered / total * 100 | number:'1.2-2' }}%</div>
           <div class="Progress">Progress Rate</div>
         </div>
       </div>
@@ -58,7 +58,36 @@
         <button class="add-task-button" (click)="addTask()">Add Action</button>
       </div>
 
-      <!-- ... -->
+      <div class="table-container" *ngFor="let table of tables">
+        <div class="Epic">
+          <span class="epic-title" style="width:500px">{{ table.name }} : {{ table.deadline }}</span>
+        </div>
+        <table class="data-table">
+          <thead>
+          <tr>
+            <th style="width: 500px;">Action</th>
+            <th style="width: 180px;">Date</th>
+            <th style="width: 120px;">Effort</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of table.data">
+            <td>{{ row.description }}</td>
+            <td>
+              <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+              {{ row.deadline }}
+            </td>
+            <td>{{ row.effort }}</td>
+            <td>
+              <span [ngClass]="getStatusColorClass(row.status)"></span>
+              {{ row.status }}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
       <ng-template #addTaskDialog>
         <div class="popup-form">
           <h2>Add Action</h2>
@@ -101,12 +130,13 @@
               <label for="epic">Epic:</label>
               <select id="epic" name="epic" formControlName="epic">
                 <option value="" disabled selected>Select epic</option>
-                <option *ngFor="let epic of epic" [value]="epic.id">{{ epic.name }}</option>
+                <option *ngFor="let epic of tables" [value]="epic.id">{{ epic.name }}</option>
               </select>
               <div *ngIf="taskForm.controls['epic'].touched && taskForm.controls['epic'].invalid" class="error-message">
                 Epic is required
               </div>
             </div>
+
             <div class="button-container">
               <button type="submit">Register</button>
               <button type="button" (click)="closeAddTaskModal()">Cancel</button>
@@ -114,9 +144,6 @@
           </form>
         </div>
       </ng-template>
-
-      <!-- ... -->
-
 
       <ng-template #addEpicDialog>
         <div class="popup-form">
@@ -137,64 +164,6 @@
           </form>
         </div>
       </ng-template>
-<!--      <div class="table-container" *ngFor="let table of tables">-->
-<!--        <div class="Epic">-->
-<!--          <span class="epic-title" style="width:500px">{{table.name}} : {{ table.deadline }}</span>-->
-<!--        </div>-->
-<!--        <table class="data-table">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th style="width: 500px;">Action</th>-->
-<!--            <th style="width: 180px;">Date</th>-->
-<!--            <th style="width: 120px;">Effort</th>-->
-<!--            <th>Status</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let row of table.data">-->
-<!--            <td>{{ row.action }}</td>-->
-<!--            <td>-->
-<!--              <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">-->
-<!--              {{ row.date }}-->
-<!--            </td>-->
-<!--            <td>{{ row.effort }}</td>-->
-<!--            <td>-->
-<!--              <span [ngClass]="getStatusColorClass(row.status)"></span>-->
-<!--              {{ row.status }}-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--      </div>-->
-
-
-      <div class="table-container" *ngFor="let table of tables">
-        <div class="Epic"><span class="epic-title" style="width:500px">{{table.name}} : {{ table.deadline }}</span></div>
-        <table class="data-table">
-          <thead>
-          <tr>
-            <th style="width: 500px;">Action</th>
-            <th style="width: 180px;">Date</th>
-            <th style="width: 120px;">Effort</th>
-            <th>Status</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let row of table.data">
-            <td>{{ row.action }}</td>
-            <td><img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">{{ row.date }}</td>
-            <td>{{ row.effort }}</td>
-            <td>
-              <span [ngClass]="getStatusColorClass(row.status)"></span>
-              {{ row.status }}
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <app-epic-table></app-epic-table>
-      <app-action-table></app-action-table>
     </div>
   </div>
 </div>

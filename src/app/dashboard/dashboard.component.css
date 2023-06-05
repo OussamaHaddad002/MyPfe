@@ -1,11 +1,318 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+.dashboard-page {
+  background-color: #F9F9F9;
+
+}
+
+.container{
+  background-color: #F9F9F9;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 22px;
+  position: absolute;
+  left: 400px;
+  top: 133px;
+  background-color: #F9F9F9;
+  padding: 10px;
+
+}
+.rectangle {
+  height: 874px;
+  width: 350px;
+  left: 345px;
+  top: 130px;
+  border-radius: 11px;
+  background-color: #FFFFFF;
+}
+
+.title {
+  color: #656877;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+
+.subtitle-example {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 46px;
+  margin-left: 40px;
+}
+
+.subtitle {
+  color: #656877;
+  font-size: 16px;
+  margin-right: 57px;
+}
+
+.example {
+  color: #D9DBE3;
+  font-size: 16px;
+  margin-left: 30px;
+}
+
+.first{
+  display: flex;
+  margin-bottom: 19px
+}
+.box {
+  height: 150px;
+  width: 351px;
+  border-radius: 0px;
+  background-color: #ccc;
+  margin-right: 11px;
+  background-color: #FFFFFF;
+}
+
+box {
+  height: 150px;
+  width: 351px;
+  border-radius: 0px;
+  background-color: #ccc;
+  margin-right: 11px;
+}
+
+.box h2 {
+  color: #000;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.percentage {
+  color: #656877;
+  font-size: 16px;
+}
+
+.content img {
+  margin-left: 10px;
+}
+
+.boxe {
+  width: 335px;
+  height: 211px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(76, 87, 125, 0.02);
+  border-radius: 12px;
+}
+
+
+.number-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.number {
+  font-size: 28px;
+  color: #FFD800;
+  width: 56px;
+  height: 38px;
+  padding-left: 30px;
+}
+
+.title {
+  margin-left: 23px;
+  font-weight: 500 ;
+  font-size: 20px;
+  font-family: 'ROBOTO';
+  color: #1C264A;
+
+}
+
+.sub-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.sub-title {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #E4E6EF;
+  padding-left: 30px;
+}
+
+.value {
+  font-weight: bold;
+  color: #181C33;
+  padding-right: 31px;
+  size: 14px;
+}
+
+.chart-container{
   display: flex;
 }
 
-.app-side-nav {
-  flex: 0 0 330px; /* Set width for the side nav */
+.color-description-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.app-search-bar {
-  flex: 1; /* Let it take the remaining space */
+.chart-image{
+  width: 100px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
+
+.color-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-rectangle {
+  width: 8px;
+  height: 3px;
+  margin-right: 5px;
+}
+
+.color-description {
+  flex-grow: 1;
+  color: #B5B5C3;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+}
+
+.color-percentage {
+  font-weight: bold;
+  margin-left: 42px;
+  color: #5E6278;
+}
+
+.title1{
+  margin-left: 23px;
+  font-weight: 500 ;
+  font-size: 20px;
+  font-family: 'ROBOTO';
+  color: #1C264A;
+  padding: 21px;
+}
+
+.shart-image{
+  width: 203px;
+  margin-left: 63px;
+}
+.prog {
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 22px;
+  color: #1C264A;
+  text-align: center;
+  position: relative;
+  top: -100px;
+}
+
+
+.mini-box{
+  width: 154px;
+  height: 111px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(76, 87, 125, 0.02);
+  border-radius: 12px;
+  margin-right: 20px;
+}
+
+.seconde{
+  display: flex;
+  margin-bottom: 19px;
+}
+.mini-rectangle {
+  width: 100%;
+  height: 23px;
+  background-color: #000; /* Set your desired background color */
+  /* Add additional styling as needed */
+}
+
+.text {
+  color: #fff; /* Set your desired text color */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.mini-box:nth-child(odd) .mini-rectangle {
+  background-color: #FFD800;
+}
+
+.mini-box:nth-child(odd) .text {
+  color: #483A9D;
+}
+
+/* Rectangle and text styling for the second and fourth boxes */
+.mini-box:nth-child(even) .mini-rectangle {
+  background-color: #483A9D;
+}
+
+.mini-box:nth-child(even) .text {
+  color: #FFFFFF;
+}
+
+.number {
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.boxee {
+  gap: 15px;
+  margin-right: 20px;
+}
+
+.rectanglee {
+  height: 53px;
+  width: 329px;
+  background-color: #ffffff;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 16px;
+  color: #000000;
+}
+
+.numbers {
+
+  color: #000000;
+  margin-left: 40px;
+  text-align: center;
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.third{
+  display: flex;
+  margin-bottom: 19px
+}
+
+
+
+
+
+

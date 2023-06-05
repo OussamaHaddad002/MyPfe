@@ -2,12 +2,15 @@
   <span class="active-link">{{ activeLink }}</span>
   <div class="search-input-wrapper">
     <i class="search-icon"></i>
-  <input type="text" placeholder="Search..." class="search-input">
+    <input type="text" placeholder="Search..." class="search-input">
   </div>
   <div class="user-info">
     <i class="notification-icon"></i>
-    <span class="user-name">{{userName}} <i class="dropdown-icon"></i> </span>
+    <span class="user-name" (click)="toggleDropdown()">{{ userName }} <i class="dropdown-icon"></i> </span>
     <img src="./assets/images/Agent.png" alt="User Picture" width="30" height="30">
 
+    <ul class="dropdown-list" *ngIf="dropdownVisible">
+      <li (click)="logout()"><a href="javascript:void(0)">Logout</a></li>
+    </ul>
   </div>
 </div>

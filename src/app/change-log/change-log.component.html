@@ -3,20 +3,20 @@
     <div class="change-container">
       <div class="box">
         <div class="number-container">
-          <div class="number">{{total}}</div>
+          <div class="number">{{ total }}</div>
           <div class="title">Total Cost (effort)</div>
         </div>
         <div class="sub-container">
           <div class="sub-title">Scope</div>
-          <div class="value">{{scope}}</div>
+          <div class="value">{{ scope }}</div>
         </div>
         <div class="sub-container">
           <div class="sub-title">Resourcing</div>
-          <div class="value">{{resourcing}}</div>
+          <div class="value">{{ resourcing }}</div>
         </div>
         <div class="sub-container">
           <div class="sub-title">Timeline</div>
-          <div class="value">{{timeline}}</div>
+          <div class="value">{{ timeline }}</div>
         </div>
       </div>
 
@@ -27,18 +27,19 @@
           <div class="color-description-container">
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #FFD800;"></div>
-              <div class="color-description">Planned</div>
-              <div class="color-percentage">50%</div>
+              <div class="color-description">TimeLine</div>
+              <div class="color-percentage">{{timelinePercentage | number:'1.2-2'}}%</div>
             </div>
             <div class="color-container">
-              <div class="color-rectangle" style="background-color: #00ff00;"></div>
-              <div class="color-description">In_Progress</div>
-              <div class="color-percentage">30%</div>
+              <div class="color-rectangle" style="background-color:#1C264A;"></div>
+              <div class="color-description">Scope</div>
+              <div class="color-percentage">{{scopePercentage | number:'1.2-2'}}%</div>
             </div>
+
             <div class="color-container">
-              <div class="color-rectangle" style="background-color: #0000ff;"></div>
-              <div class="color-description">Delivered</div>
-              <div class="color-percentage">20%</div>
+              <div class="color-rectangle" style="background-color:#E4E6EF;"></div>
+              <div class="color-description">Resourcing</div>
+              <div class="color-percentage">{{resourcingPercentage | number:'1.2-2'}}%</div>
             </div>
           </div>
         </div>
@@ -48,23 +49,20 @@
         <div class="title1">Cost (effort)</div>
         <img src="./assets/images/shart.png" alt="shart Image" class="shart-image">
         <div class="prog">
-          <div class="Progress-rate">7,895</div>
-        <div class="Progress">Progress Rate</div>
+          <div class="Progress-rate">{{costRate | number:'1.2-2'}}</div>
+          <div class="Progress">Cost Rate</div>
         </div>
       </div>
 
       <div class="buttons">
         <button class="add-button" (click)="addNew()">Add new</button>
       </div>
-      <!-- change-log.component.html -->
 
-      <!-- ... Existing code ... -->
-
-      <div class="table-container" *ngFor="let table of tables">
+      <div class="table-container">
         <table class="data-table">
           <thead>
           <tr>
-            <th>Typer</th>
+            <th>Type</th>
             <th>Initiator</th>
             <th>Date</th>
             <th class="description-column">Description</th>
@@ -74,64 +72,63 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let row of table.data; let i = index">
-            <td>{{ row.Type }}</td>
-            <td>{{ row.Initiator }}</td>
-            <td>
-              <div class="date-cell">
-                <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
-                {{ row.Date }}
-              </div>
-            </td>
-            <td>{{ row.Description }}</td>
-            <td>{{ row.Impact }}</td>
-            <td>{{ row.Cost }}</td>
-            <td>
-              {{ row.Status }}
-            </td>
-          </tr>
-          <!-- Sample Rows (Replace with your actual data) -->
+            <tr *ngFor="let row of tables[0].data; let i = index">
+              <td>{{ row.type }}</td>
+              <td>{{ row.initiator }}</td>
+              <td>
+                <div class="date-cell">
+                  <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+                  {{ row.createdDate }}
+                </div>
+              </td>
+              <td>{{ row.description }}</td>
+              <td>{{ row.impact }}</td>
+              <td>{{ row.cost }}</td>
+              <td>{{ row.status }}</td>
+            </tr>
+            <tr *ngIf="isAddingNew">
+              <td>
+                <select [(ngModel)]="newRow.type" class="input-field">
+                  <option value="Major">Major</option>
+                  <option value="Standard">Standard</option>
+                  <option value="Minor">Minor</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.initiator" class="input-field">
+              </td>
+              <td>
+                <div class="date-cell">
+                  <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
+                  <input type="text" [(ngModel)]="newRow.createdDate" class="input-field">
+                </div>
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.description" class="input-field">
+              </td>
+              <td>
+                <select [(ngModel)]="newRow.impact" class="input-field">
+                  <option value="TimeLine">TimeLine</option>
+                  <option value="Scope">Scope</option>
+                  <option value="Resourcing">Resourcing</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="newRow.cost" class="input-field" (keydown.enter)="saveNewRow(tables[0])">
+              </td>
+              <td>
+                <select [(ngModel)]="newRow.status" class="input-field">
+                  <option value="Pending">Pending</option>
+                  <option value="InProgress">In_Progress</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+              </td>
+            </tr>
 
-          <tr *ngIf="table.isAddingNew">
-            <td>
-              <select [(ngModel)]="newRow.Type" class="input-field">
-                <option value="Major">Major</option>
-                <option value="Standard">Standard</option>
-                <option value="Minor">Minor</option>
-              </select>
-            </td>
-            <td>
-              <input type="text" [(ngModel)]="newRow.Initiator" class="input-field">
-            </td>
-            <td>
-              <div class="date-cell">
-                <img src="./assets/images/calendar.png" alt="calendar" width="15px" class="calendar">
-                <input type="text" [(ngModel)]="newRow.Date" class="input-field">
-              </div>
-            </td>
-            <td>
-              <input type="text" [(ngModel)]="newRow.Description" class="input-field">
-            </td>
-            <td>
-              <input type="text" [(ngModel)]="newRow.Impact" class="input-field">
-            </td>
-            <td>
-              <input type="text" [(ngModel)]="newRow.Cost" class="input-field" (keydown.enter)="saveNewRow(table)">
-            </td>
-            <td>
-              <select [(ngModel)]="newRow.Status" class="input-field">
-                <option value="Pending">Pending</option>
-                <option value="In_Progress">In_Progress</option>
-                <option value="Delivered">Delivered</option>
-              </select>
-            </td>
-          </tr>
           </tbody>
+
         </table>
       </div>
-
-      <!-- ... Remaining code ... -->
-
     </div>
   </div>
 </div>

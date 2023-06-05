@@ -14,8 +14,8 @@ import { RessourcesComponent } from './ressources/ressources.component';
 import { ChangeLogComponent } from './change-log/change-log.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { RegisterComponent } from './register/register.component';
-import {EpicTableComponent} from "./component/epic-table.component";
-import {ActionTableComponent} from "./component/action-table.component";
+// import {EpicTableComponent} from "./component/epic-table.component";
+// import {ActionTableComponent} from "./component/action-table.component";
 import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
@@ -29,8 +29,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     ChangeLogComponent,
     AuthenticateComponent,
     RegisterComponent,
-    EpicTableComponent,
-    ActionTableComponent,
+    // EpicTableComponent,
+    // ActionTableComponent,
     NavigationComponent
   ],
     imports: [

@@ -27,18 +27,18 @@
           <div class="color-description-container">
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #FFD800;"></div>
-              <div class="color-description">Planned</div>
-              <div class="color-percentage">50%</div>
+              <div class="color-description">Management</div>
+              <div class="color-percentage">{{projectManagementPercentage| number:'1.2-2'}}%</div>
             </div>
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #00ff00;"></div>
-              <div class="color-description">In_Progress</div>
-              <div class="color-percentage">30%</div>
+              <div class="color-description">Development</div>
+              <div class="color-percentage">{{developmentPercentage| number:'1.2-2'}}%</div>
             </div>
             <div class="color-container">
               <div class="color-rectangle" style="background-color: #0000ff;"></div>
-              <div class="color-description">Delivered</div>
-              <div class="color-percentage">20%</div>
+              <div class="color-description">support</div>
+              <div class="color-percentage">{{supportPercentage| number:'1.2-2'}}%</div>
             </div>
           </div>
         </div>
@@ -104,13 +104,30 @@
                 <input type="text" [(ngModel)]="newRow.teamMember" class="input-field" >
               </td>
               <td>
-                <input type="text" [(ngModel)]="newRow.role" class="input-field">
+                <!-- Add this code inside the form or table where you display the new row -->
+                <select [(ngModel)]="newRow.role" name="role" class="input-field">
+                  <option value="TeamLead">TeamLead</option>
+                  <option value="ProductOwner">ProductOwner</option>
+                  <option value="TeamMember">TeamMember</option>
+                  <option value="Designer">Designer</option>
+                </select>
+
+
               </td>
               <td>
-                <input type="text" [(ngModel)]="newRow.bu" class="input-field">
+                <select [(ngModel)]="newRow.bu" name="bu" class="input-field">
+                  <option value="FSI">FSI</option>
+                  <option value="SMB">SMB</option>
+                  <option value="RETAIL">RETAIL</option>
+                  <option value="CLOUD">CLOUD</option>
+                </select>
               </td>
               <td>
-                <input type="text" [(ngModel)]="newRow.regime" class="input-field">
+                <select [(ngModel)]="newRow.regime" name="regime" class="input-field">
+                  <option value="FullTime">Full-Time</option>
+                  <option value="PartTime">Part-Time</option>
+                </select>
+
               </td>
               <td>
                 <div class="date-cell">
@@ -128,10 +145,13 @@
                 <input type="text" [(ngModel)]="newRow.duration" class="input-field">
               </td>
               <td>
-                <input type="text" [(ngModel)]="newRow.effort" class="input-field">
+                <input type="text" [(ngModel)]="newRow.effort" class="input-field" (keydown.enter)="saveNewRow(tables[0])" >
               </td>
               <td>
-                <input type="text" [(ngModel)]="newRow.status" class="input-field" (keydown.enter)="saveNewRow(table)">
+                <select [(ngModel)]="newRow.status" name="status" class="input-field">
+                  <option value="Allocated">Allocated</option>
+                  <option value="Liberated">Liberated</option>
+                </select>
               </td>
             </tr>
           </tbody>

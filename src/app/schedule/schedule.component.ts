@@ -2,23 +2,20 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Epic } from '../models/epic';
-import { EpicService } from '../services/epic.service';
-import {TableService} from "../services/table-service.service";
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css'],
 })
-export class ScheduleComponent{
+export class ScheduleComponent implements OnInit {
   public total = 0;
   public planned = 0;
   public inprogress = 0;
   public delivered = 0;
 
   public epicNumber: number = 1;
-  public tables: Epic[] = [];
+  public tables: any[] = [];
   public nextEpicNumber: number = 1;
   public task: any = {}; // Declare the task property
   showForm: boolean = false;
@@ -31,9 +28,7 @@ export class ScheduleComponent{
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private epicService: EpicService,
-    private tableService: TableService
+    private http: HttpClient
   ) {
     this.taskForm = this.formBuilder.group({
       action: ['', Validators.required],
@@ -42,6 +37,22 @@ export class ScheduleComponent{
       status: ['', Validators.required],
       epic: ['', Validators.required],
     });
+  }
+
+  ngOnInit() {
+    this.loadEpics();
+    this.loadActions();
+  }
+
+  loadEpics() {
+    this.http.get<any[]>('http://localhost:8080/epics').subscribe(
+      (epics: any[]) => {
+        this.tables = epics;
+      },
+      (error: any) => {
+        console.log('Error retrieving epics:', error);
+      }
+    );
   }
 
 
@@ -95,7 +106,7 @@ export class ScheduleComponent{
       effort: this.taskForm.value.effort,
       status: this.taskForm.value.status,
       epic: {
-        id: this.taskForm.value.epic,
+        id: this.taskForm.value.id,
       },
     };
 
@@ -114,12 +125,13 @@ export class ScheduleComponent{
 
         this.taskForm.reset();
 
+        // Find the epic in the tables array and push the new task to its data
         const selectedEpicId = this.taskForm.value.epic;
-        const tableIndex = this.tables.findIndex((table) => table.id === selectedEpicId);
+        const epicIndex = this.tables.findIndex((epic) => epic.id === selectedEpicId);
 
-        if (tableIndex !== -1) {
-          const table = this.tables[tableIndex];
-          table.data.push(newTask);
+        if (epicIndex !== -1) {
+          const epic = this.tables[epicIndex];
+          epic.data.push(newTask);
         }
 
         this.closeAddTaskModal();
@@ -131,7 +143,7 @@ export class ScheduleComponent{
   }
 
   public registerEpic(): void {
-    const newEpic: Epic = {
+    const newEpic = {
       id: this.nextEpicNumber,
       name: this.epic.name,
       deadline: this.epic.deadline,
@@ -145,10 +157,8 @@ export class ScheduleComponent{
         this.epic = {};
         this.closeAddEpicModal();
 
-        // Update the tables data using the TableService
-        const currentTables = this.tables.slice();
-        currentTables.push(newEpic);
-        this.tableService.setTables(currentTables);
+        // Add the new epic to the tables array
+        this.tables.push(newEpic);
       },
       (error) => {
         console.error('Failed to add epic:', error);
@@ -156,6 +166,18 @@ export class ScheduleComponent{
     );
   }
 
+  loadActions() {
+    this.http.get<any[]>('http://localhost:8080/actions').subscribe(
+      (actions: any[]) => {
+        this.tables.forEach((epic: any) => {
+          epic.data = actions.filter((action: any) => action.epic.id === epic.id);
+        });
+      },
+      (error: any) => {
+        console.log('Error retrieving actions:', error);
+      }
+    );
+  }
 
 
 
